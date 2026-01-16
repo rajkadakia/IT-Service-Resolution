@@ -1,0 +1,191 @@
+[
+  {
+    "incident_id": "LB-001",
+    "category": "loadbalancer",
+    "title": "Load balancer VIP not responding",
+    "symptoms": [
+      "Application inaccessible",
+      "VIP does not respond to ping or HTTP"
+    ],
+    "errors": [
+      "Connection timed out"
+    ],
+    "root_cause": "Load balancer service down or VIP disabled",
+    "resolution_steps": [
+      "Check load balancer service status",
+      "Verify VIP configuration",
+      "Restart load balancer service if required"
+    ],
+    "validation_steps": [
+      "Access application via VIP"
+    ],
+    "tools": ["lb-console", "ping"],
+    "severity": "P1",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-002",
+    "category": "loadbalancer",
+    "title": "Backend servers marked down",
+    "symptoms": [
+      "Application intermittently unavailable"
+    ],
+    "errors": [
+      "No available backend servers"
+    ],
+    "root_cause": "Health check failing on backend servers",
+    "resolution_steps": [
+      "Check health check configuration",
+      "Verify backend server health",
+      "Fix application or port issues on backend"
+    ],
+    "validation_steps": [
+      "Confirm backend servers marked up"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P1",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-003",
+    "category": "loadbalancer",
+    "title": "Incorrect load balancing algorithm causing uneven traffic",
+    "symptoms": [
+      "One backend overloaded",
+      "Other backends idle"
+    ],
+    "errors": [
+      "Performance degradation"
+    ],
+    "root_cause": "Load balancing algorithm misconfigured",
+    "resolution_steps": [
+      "Review load balancing algorithm",
+      "Update algorithm to round-robin or least-connections",
+      "Apply configuration changes"
+    ],
+    "validation_steps": [
+      "Verify traffic distributed evenly"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-004",
+    "category": "loadbalancer",
+    "title": "SSL certificate expired on load balancer",
+    "symptoms": [
+      "Browser security warnings",
+      "HTTPS access fails"
+    ],
+    "errors": [
+      "SSL certificate expired"
+    ],
+    "root_cause": "Expired SSL certificate on load balancer",
+    "resolution_steps": [
+      "Install renewed SSL certificate",
+      "Bind certificate to VIP",
+      "Reload SSL configuration"
+    ],
+    "validation_steps": [
+      "Access HTTPS site without warnings"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-005",
+    "category": "loadbalancer",
+    "title": "Persistence misconfiguration breaking user sessions",
+    "symptoms": [
+      "Users logged out frequently",
+      "Session data lost"
+    ],
+    "errors": [
+      "Session not found"
+    ],
+    "root_cause": "Session persistence not configured correctly",
+    "resolution_steps": [
+      "Review persistence settings",
+      "Enable cookie-based or source-IP persistence",
+      "Apply changes"
+    ],
+    "validation_steps": [
+      "Verify session stability"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-006",
+    "category": "loadbalancer",
+    "title": "Load balancer SNAT issue causing backend connectivity failure",
+    "symptoms": [
+      "Backend servers cannot respond to clients"
+    ],
+    "errors": [
+      "Connection reset"
+    ],
+    "root_cause": "SNAT disabled or misconfigured",
+    "resolution_steps": [
+      "Review SNAT configuration",
+      "Enable SNAT for backend traffic",
+      "Apply configuration changes"
+    ],
+    "validation_steps": [
+      "Confirm backend responses reach clients"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-007",
+    "category": "loadbalancer",
+    "title": "Load balancer high CPU usage",
+    "symptoms": [
+      "Slow application response",
+      "Intermittent connection failures"
+    ],
+    "errors": [
+      "Packet drops"
+    ],
+    "root_cause": "Load balancer overloaded due to traffic spike",
+    "resolution_steps": [
+      "Check CPU and memory usage",
+      "Optimize configuration",
+      "Scale load balancer resources"
+    ],
+    "validation_steps": [
+      "Verify performance stabilizes"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P1",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "LB-008",
+    "category": "loadbalancer",
+    "title": "Health monitor using incorrect port",
+    "symptoms": [
+      "Backends marked down despite being healthy"
+    ],
+    "errors": [
+      "Health check failed"
+    ],
+    "root_cause": "Health monitor configured with wrong port or protocol",
+    "resolution_steps": [
+      "Review health monitor configuration",
+      "Correct port and protocol",
+      "Apply changes"
+    ],
+    "validation_steps": [
+      "Confirm backends marked up"
+    ],
+    "tools": ["lb-console"],
+    "severity": "P2",
+    "environment": "prod"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "incident_id": "string",
+  "category": "dns | vpn | firewall",
+  "title": "string",
+  "symptoms": ["string"],
+  "errors": ["string"],
+  "root_cause": "string",
+  "resolution_steps": ["string"],
+  "validation_steps": ["string"],
+  "tools": ["string"],
+  "severity": "P1 | P2 | P3",
+  "environment": "prod | staging | dev"
+}

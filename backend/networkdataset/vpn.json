@@ -1,0 +1,191 @@
+[
+  {
+    "incident_id": "VPN-001",
+    "category": "vpn",
+    "title": "VPN connected but internal resources not accessible",
+    "symptoms": [
+      "VPN tunnel established",
+      "Cannot access internal servers"
+    ],
+    "errors": [
+      "Request timed out"
+    ],
+    "root_cause": "Internal routes not pushed to VPN client",
+    "resolution_steps": [
+      "Verify routes configured on VPN server",
+      "Update VPN server to push internal network routes",
+      "Reconnect VPN client"
+    ],
+    "validation_steps": [
+      "Ping internal server",
+      "Confirm traffic flows through VPN tunnel"
+    ],
+    "tools": ["ping", "tracert"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-002",
+    "category": "vpn",
+    "title": "VPN authentication failure",
+    "symptoms": [
+      "VPN connection fails during login"
+    ],
+    "errors": [
+      "Authentication failed"
+    ],
+    "root_cause": "Invalid user credentials or expired VPN certificate",
+    "resolution_steps": [
+      "Verify user credentials",
+      "Check VPN certificate validity",
+      "Reset VPN credentials if required"
+    ],
+    "validation_steps": [
+      "Reconnect VPN successfully"
+    ],
+    "tools": ["vpn-client"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-003",
+    "category": "vpn",
+    "title": "VPN tunnel disconnects intermittently",
+    "symptoms": [
+      "VPN connection drops randomly"
+    ],
+    "errors": [
+      "Connection reset by peer"
+    ],
+    "root_cause": "Unstable network connection or VPN keepalive misconfiguration",
+    "resolution_steps": [
+      "Check client network stability",
+      "Adjust VPN keepalive settings",
+      "Reconnect VPN client"
+    ],
+    "validation_steps": [
+      "Monitor VPN connection stability"
+    ],
+    "tools": ["ping"],
+    "severity": "P3",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-004",
+    "category": "vpn",
+    "title": "VPN connected but DNS resolution fails",
+    "symptoms": [
+      "Cannot resolve internal hostnames over VPN"
+    ],
+    "errors": [
+      "DNS request timed out"
+    ],
+    "root_cause": "DNS servers not pushed to VPN client",
+    "resolution_steps": [
+      "Verify DNS server settings on VPN server",
+      "Configure VPN to push internal DNS servers",
+      "Reconnect VPN client"
+    ],
+    "validation_steps": [
+      "Resolve internal hostname using nslookup"
+    ],
+    "tools": ["nslookup"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-005",
+    "category": "vpn",
+    "title": "Split tunneling misconfiguration blocks internal access",
+    "symptoms": [
+      "Some internal services unreachable over VPN"
+    ],
+    "errors": [
+      "Request timed out"
+    ],
+    "root_cause": "Split tunneling enabled without required internal routes",
+    "resolution_steps": [
+      "Review split tunneling configuration",
+      "Add missing internal routes or disable split tunneling",
+      "Reconnect VPN client"
+    ],
+    "validation_steps": [
+      "Access previously unreachable internal service"
+    ],
+    "tools": ["tracert"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-006",
+    "category": "vpn",
+    "title": "VPN traffic fails due to MTU mismatch",
+    "symptoms": [
+      "VPN connects but some applications fail",
+      "Large packets dropped"
+    ],
+    "errors": [
+      "Packet fragmentation needed"
+    ],
+    "root_cause": "MTU size mismatch between VPN client and server",
+    "resolution_steps": [
+      "Reduce MTU size on VPN client",
+      "Apply recommended MTU settings on VPN server",
+      "Reconnect VPN client"
+    ],
+    "validation_steps": [
+      "Test application functionality over VPN"
+    ],
+    "tools": ["ping"],
+    "severity": "P3",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-007",
+    "category": "vpn",
+    "title": "VPN connected but traffic routes outside tunnel",
+    "symptoms": [
+      "Internet traffic bypasses VPN",
+      "Internal services unreachable"
+    ],
+    "errors": [
+      "Incorrect routing table"
+    ],
+    "root_cause": "Default route not set to VPN interface",
+    "resolution_steps": [
+      "Check routing table on VPN client",
+      "Update VPN configuration to route traffic via tunnel",
+      "Reconnect VPN client"
+    ],
+    "validation_steps": [
+      "Verify routing table",
+      "Access internal service successfully"
+    ],
+    "tools": ["route"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "VPN-008",
+    "category": "vpn",
+    "title": "VPN server unreachable",
+    "symptoms": [
+      "VPN connection cannot be established"
+    ],
+    "errors": [
+      "Unable to reach VPN server"
+    ],
+    "root_cause": "VPN server down or network path blocked",
+    "resolution_steps": [
+      "Ping VPN server to verify reachability",
+      "Check firewall rules allowing VPN traffic",
+      "Restart VPN service if required"
+    ],
+    "validation_steps": [
+      "Connect to VPN successfully"
+    ],
+    "tools": ["ping"],
+    "severity": "P1",
+    "environment": "prod"
+  }
+]

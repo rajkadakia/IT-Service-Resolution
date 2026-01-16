@@ -1,0 +1,87 @@
+# IT Resolution Demo - Question Bank
+
+## 1. DNS Scenarios (Category: DNS)
+**Scenario A: Hostname not resolving (DNS-001)**
+- Query: "My internal application is not accessible and ping fails."
+- Expected: Resolution steps for checking DNS servers and flushing cache.
+
+**Scenario B: NXDOMAIN Error (DNS-003)**
+- Query: "I'm getting an NXDOMAIN error when trying to reach a service."
+- Expected: Steps to verify DNS records in the authoritative zone.
+
+**Scenario C: Slow Resolution (DNS-007)**
+- Query: "Hostname resolution is very delayed."
+- Expected: Check DNS forwarders configuration.
+
+---
+
+## 2. VPN Scenarios (Category: VPN)
+**Scenario A: Connection but no access (VPN-001)**
+- Query: "I am connected to VPN but cannot access internal servers."
+- Expected: Suggest checking if routes are pushed to the client.
+
+**Scenario B: Authentication Failure (VPN-002)**
+- Query: "VPN connection fails during login with authentication error."
+- Expected: Verify credentials or certificate validity.
+
+**Scenario C: Split Tunneling (VPN-005)**
+- Query: "I can't reach some internal services while split tunneling is on."
+- Expected: Review split tunneling configuration and routes.
+
+---
+
+## 3. Firewall Scenarios (Category: Firewall)
+**Scenario A: Blocking App (FW-001)**
+- Query: "The firewall seems to be blocking my application traffic."
+- Expected: Create a firewall rule to allow the specific traffic.
+
+**Scenario B: Rule Order (FW-002)**
+- Query: "Traffic is blocked even though I added an allow rule."
+- Expected: Suggest checking rule order (deny rule might be above allow rule).
+
+**Scenario C: IPS Blocking (FW-005)**
+- Query: "Intermittent application failures due to connection resets."
+- Expected: Investigate IPS logs for false positives.
+
+---
+
+## 4. Proxy Scenarios (Category: Proxy)
+**Scenario A: Internet Blocked (PROXY-001)**
+- Query: "Users cannot access the internet through the proxy at all."
+- Expected: Check if proxy service is down.
+
+**Scenario B: SSL Inspection (PROXY-004)**
+- Query: "HTTPS websites are failing to load with security warnings."
+- Expected: Install proxy CA certificate on client.
+
+**Scenario C: Authentication Loop (PROXY-002)**
+- Query: "Browser keeps prompting for proxy credentials."
+- Expected: Clear cache or check backend authentication.
+
+---
+
+## 5. Ambiguous / Multi-Turn Scenarios (Test Clarification)
+
+**Scenario A: "Connection Timeout" (Ambiguous)**
+- Query: "I am getting a connection timeout error."
+- *Analysis*: Could be Firewall (FW-001), Proxy (PROXY-001), or DNS (DNS-002).
+- *Expected Flow*:
+    1. System: "The system needs to know if this is happening for a specific internal app or all internet traffic?" (Clarification)
+    2. User: "It's for all internet traffic."
+    3. System: (Should pivot to Proxy or Firewall outbound issues).
+
+**Scenario B: "Access Denied" (Ambiguous)**
+- Query: "I am getting access denied."
+- *Analysis*: Could be VPN Auth (VPN-002) or Proxy Auth (PROXY-002).
+- *Expected Flow*:
+    1. System: "The system needs to know if this is a VPN login failure or a browser proxy error?"
+    2. User: "It's when I try to log into the VPN."
+    3. System: (Provides resolution for VPN-002).
+
+**Scenario C: "Slow Performance" (Ambiguous)**
+- Query: "The network is very slow."
+- *Analysis*: Could be DNS (DNS-007), Firewall (FW-006), or Proxy (PROXY-006).
+- *Expected Flow*:
+    1. System: "The system needs to know if the slowness is during initial connection (lookup) or during data transfer?"
+    2. User: "It takes a long time just to find the site."
+    3. System: (Provides resolution for DNS Slowness).

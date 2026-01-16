@@ -1,0 +1,198 @@
+[
+  {
+    "incident_id": "DNS-001",
+    "category": "dns",
+    "title": "Hostname not resolving due to incorrect DNS server",
+    "symptoms": [
+      "Internal application not accessible",
+      "Ping to hostname fails"
+    ],
+    "errors": [
+      "Ping request could not find host",
+      "DNS request timed out"
+    ],
+    "root_cause": "Client system configured with public DNS instead of internal DNS resolver",
+    "resolution_steps": [
+      "Check configured DNS servers using ipconfig /all",
+      "Update DNS server to internal DNS IP provided by network team",
+      "Flush DNS cache using ipconfig /flushdns"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Verify resolved IP matches expected internal service IP",
+      "Confirm application loads successfully"
+    ],
+    "tools": ["ipconfig", "nslookup"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-002",
+    "category": "dns",
+    "title": "DNS resolution fails due to stale local DNS cache",
+    "symptoms": [
+      "Hostname resolves to outdated IP address",
+      "Application intermittently unreachable"
+    ],
+    "errors": [
+      "Connection timed out"
+    ],
+    "root_cause": "Stale DNS record cached locally on the client machine",
+    "resolution_steps": [
+      "Flush DNS cache using ipconfig /flushdns",
+      "Restart network interface if issue persists"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Confirm correct and updated IP address is returned"
+    ],
+    "tools": ["ipconfig", "nslookup"],
+    "severity": "P3",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-003",
+    "category": "dns",
+    "title": "NXDOMAIN error due to missing DNS record",
+    "symptoms": [
+      "Hostname does not resolve",
+      "Service completely unavailable"
+    ],
+    "errors": [
+      "NXDOMAIN"
+    ],
+    "root_cause": "Required DNS record not present in authoritative DNS zone",
+    "resolution_steps": [
+      "Verify DNS record existence using nslookup",
+      "Create missing DNS record in authoritative DNS server"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Confirm service is reachable"
+    ],
+    "tools": ["nslookup"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-004",
+    "category": "dns",
+    "title": "DNS queries timing out due to unreachable DNS server",
+    "symptoms": [
+      "All hostname resolutions failing",
+      "Slow network operations"
+    ],
+    "errors": [
+      "DNS request timed out"
+    ],
+    "root_cause": "Configured DNS server unreachable due to network connectivity issue",
+    "resolution_steps": [
+      "Ping configured DNS server to verify connectivity",
+      "Update DNS server configuration to reachable secondary DNS server"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Confirm DNS queries complete without timeout"
+    ],
+    "tools": ["ping", "nslookup"],
+    "severity": "P1",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-005",
+    "category": "dns",
+    "title": "Incorrect DNS record pointing to wrong IP address",
+    "symptoms": [
+      "Application loads incorrect service",
+      "Unexpected application behavior"
+    ],
+    "errors": [
+      "Connection established to wrong host"
+    ],
+    "root_cause": "DNS A record incorrectly configured with outdated IP address",
+    "resolution_steps": [
+      "Verify current DNS record using nslookup",
+      "Update DNS record to correct IP address in DNS server"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Verify returned IP matches intended service"
+    ],
+    "tools": ["nslookup"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-006",
+    "category": "dns",
+    "title": "Split DNS issue between internal and external networks",
+    "symptoms": [
+      "Hostname resolves internally but fails externally",
+      "Users outside network unable to access service"
+    ],
+    "errors": [
+      "DNS request timed out"
+    ],
+    "root_cause": "DNS records configured only in internal DNS zone and missing in external DNS",
+    "resolution_steps": [
+      "Verify DNS resolution from internal and external networks",
+      "Add required DNS record to external DNS zone"
+    ],
+    "validation_steps": [
+      "Resolve hostname from external network using nslookup",
+      "Confirm service is accessible externally"
+    ],
+    "tools": ["nslookup"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-007",
+    "category": "dns",
+    "title": "DNS resolution slow due to misconfigured DNS forwarders",
+    "symptoms": [
+      "Delayed hostname resolution",
+      "Noticeable application startup delays"
+    ],
+    "errors": [
+      "DNS response delayed"
+    ],
+    "root_cause": "DNS forwarders configured to unreachable or slow upstream servers",
+    "resolution_steps": [
+      "Review DNS forwarder configuration",
+      "Update forwarders to reachable and recommended DNS servers"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Confirm DNS response time is acceptable"
+    ],
+    "tools": ["nslookup"],
+    "severity": "P3",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "DNS-008",
+    "category": "dns",
+    "title": "Local hosts file overriding DNS resolution",
+    "symptoms": [
+      "Hostname resolves to unexpected IP",
+      "Issue persists despite DNS record correction"
+    ],
+    "errors": [
+      "Incorrect IP address returned"
+    ],
+    "root_cause": "Hostname entry present in local hosts file overriding DNS resolution",
+    "resolution_steps": [
+      "Check local hosts file for hostname entry",
+      "Remove or correct incorrect hosts file entry",
+      "Flush DNS cache using ipconfig /flushdns"
+    ],
+    "validation_steps": [
+      "Resolve hostname using nslookup",
+      "Confirm correct IP address is returned"
+    ],
+    "tools": ["ipconfig", "nslookup"],
+    "severity": "P3",
+    "environment": "prod"
+  }
+]

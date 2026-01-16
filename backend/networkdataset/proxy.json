@@ -1,0 +1,190 @@
+[
+  {
+    "incident_id": "PROXY-001",
+    "category": "proxy",
+    "title": "Users cannot access internet through proxy",
+    "symptoms": [
+      "Websites do not load",
+      "All browser traffic blocked"
+    ],
+    "errors": [
+      "Connection timed out"
+    ],
+    "root_cause": "Proxy service down or unreachable",
+    "resolution_steps": [
+      "Check proxy server status",
+      "Restart proxy service if down",
+      "Verify network connectivity to proxy"
+    ],
+    "validation_steps": [
+      "Access external website successfully"
+    ],
+    "tools": ["proxy-console", "ping"],
+    "severity": "P1",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-002",
+    "category": "proxy",
+    "title": "Proxy authentication failure",
+    "symptoms": [
+      "Browser prompts repeatedly for credentials"
+    ],
+    "errors": [
+      "407 Proxy Authentication Required"
+    ],
+    "root_cause": "Invalid user credentials or authentication service issue",
+    "resolution_steps": [
+      "Verify user credentials",
+      "Check proxy authentication backend",
+      "Clear cached browser credentials"
+    ],
+    "validation_steps": [
+      "Authenticate successfully through proxy"
+    ],
+    "tools": ["browser"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-003",
+    "category": "proxy",
+    "title": "Proxy PAC file misconfiguration",
+    "symptoms": [
+      "Some websites accessible, others not",
+      "Inconsistent browsing behavior"
+    ],
+    "errors": [
+      "Proxy configuration error"
+    ],
+    "root_cause": "Incorrect PAC file logic or unreachable PAC URL",
+    "resolution_steps": [
+      "Verify PAC file URL",
+      "Correct PAC file rules",
+      "Force browser to reload PAC file"
+    ],
+    "validation_steps": [
+      "Confirm consistent website access"
+    ],
+    "tools": ["browser"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-004",
+    "category": "proxy",
+    "title": "SSL inspection blocking secure websites",
+    "symptoms": [
+      "HTTPS websites fail to load",
+      "Security warnings in browser"
+    ],
+    "errors": [
+      "SSL certificate error"
+    ],
+    "root_cause": "Proxy SSL inspection enabled without trusted certificate on client",
+    "resolution_steps": [
+      "Install proxy CA certificate on client",
+      "Verify SSL inspection policy",
+      "Test HTTPS access"
+    ],
+    "validation_steps": [
+      "Access HTTPS website without warnings"
+    ],
+    "tools": ["browser"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-005",
+    "category": "proxy",
+    "title": "Proxy bypass rule missing for internal services",
+    "symptoms": [
+      "Internal applications fail when proxy is enabled"
+    ],
+    "errors": [
+      "Connection failed"
+    ],
+    "root_cause": "Internal domains not excluded from proxy bypass list",
+    "resolution_steps": [
+      "Review proxy bypass configuration",
+      "Add internal domains to bypass list",
+      "Apply proxy configuration"
+    ],
+    "validation_steps": [
+      "Access internal application successfully"
+    ],
+    "tools": ["proxy-console"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-006",
+    "category": "proxy",
+    "title": "Proxy performance degradation",
+    "symptoms": [
+      "Slow internet access",
+      "High latency when browsing"
+    ],
+    "errors": [
+      "Slow response time"
+    ],
+    "root_cause": "Proxy overloaded due to high traffic",
+    "resolution_steps": [
+      "Check proxy CPU and memory usage",
+      "Optimize proxy policies",
+      "Scale proxy resources if required"
+    ],
+    "validation_steps": [
+      "Confirm browsing performance improved"
+    ],
+    "tools": ["proxy-console"],
+    "severity": "P3",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-007",
+    "category": "proxy",
+    "title": "Proxy blocking file downloads",
+    "symptoms": [
+      "File downloads fail"
+    ],
+    "errors": [
+      "Download blocked by policy"
+    ],
+    "root_cause": "Proxy content filtering policy blocking file type",
+    "resolution_steps": [
+      "Review content filtering rules",
+      "Allow required file type",
+      "Apply proxy policy changes"
+    ],
+    "validation_steps": [
+      "Download file successfully"
+    ],
+    "tools": ["proxy-console"],
+    "severity": "P2",
+    "environment": "prod"
+  },
+  {
+    "incident_id": "PROXY-008",
+    "category": "proxy",
+    "title": "Proxy configuration not applied to clients",
+    "symptoms": [
+      "Some users bypass proxy unintentionally"
+    ],
+    "errors": [
+      "Direct internet access"
+    ],
+    "root_cause": "Proxy settings not pushed via GPO or device management",
+    "resolution_steps": [
+      "Verify proxy deployment mechanism",
+      "Reapply proxy configuration",
+      "Restart affected clients"
+    ],
+    "validation_steps": [
+      "Confirm traffic flows through proxy"
+    ],
+    "tools": ["proxy-console"],
+    "severity": "P2",
+    "environment": "prod"
+  }
+]

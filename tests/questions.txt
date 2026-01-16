@@ -1,0 +1,31 @@
+“DNS timeout when accessing internal applications”
+
+“Hostname not resolving on corporate network”
+
+“NXDOMAIN error for an internal service”
+
+“Internal site resolves to wrong IP address”
+
+“DNS works sometimes but fails intermittently”
+
+“VPN connected but internal resources are not accessible”
+
+“VPN connection drops frequently”
+
+“VPN connects but traffic goes outside tunnel”
+
+“User cannot authenticate to VPN”
+
+“Slow performance after VPN connection”
+
+“Application not accessible after firewall rule change”
+
+“Traffic blocked between two internal servers”
+
+“Firewall logs show denied packets for required port”
+
+“Application not accessible after firewall rule change”
+
+“Traffic blocked between two internal servers”
+
+“Firewall logs show denied packets for required port”
